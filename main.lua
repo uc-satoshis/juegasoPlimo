@@ -81,7 +81,7 @@ function love.load()
                       }
     Game.OS         = love.system.getOS()
     Game.FPS = 30
-
+    Game.Fondo       = love.graphics.newImage("assets/fondos/black-background.jpg"),
 
     -- Inicializa los sistemas del juego
     Game.GameLoop:Init()
@@ -134,6 +134,7 @@ function love.draw()
 
     -- Dibuja en el Canvas
     love.graphics.setCanvas(Game.Canvas) -- set canvas
+    love.graphics.draw(Game.Fondo, 0, 0)
     Game.Camera:Set() -- set camara
     Game.Renderer:Render()  -- renderiza en el canvas
     Game.Physics:Debug_Render()

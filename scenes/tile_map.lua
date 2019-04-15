@@ -2,6 +2,7 @@ local Tile_Map = {
 
     New = function(path)
         if(mapActual~=nil) then
+            print("HOLA")
             mapActual:Destroy()
         end
         local map = require(path)

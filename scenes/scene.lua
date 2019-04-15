@@ -13,7 +13,6 @@ New = function(id)
     function scene:Init()
         Game.GameLoop:AddLoop(self)
         Game.Renderer:AddRenderer(self, 2)
-        --print("ESCENA ANADIDA!")
         self:OvInit()
     end
 
