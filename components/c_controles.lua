@@ -5,7 +5,7 @@ New = function()
     local c_controles = component.New "control"
 
     function c_controles.Load(e, args)
-        e.Speed = 16
+        e.Speed = 50
         
         if(Game.OS == "Android") then
             Game.Joystick = require("controles/joystick")

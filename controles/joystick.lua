@@ -31,13 +31,17 @@ end
 function Joystick:Update(e)
 	if self.activo then
 		if(math.abs(self.value.x) > 0.01 and math.abs(self.value.y) > 0.01) then
-			e:Apply_Velocity(e.Speed*(math.abs(self.value.x) + math.abs(self.value.y)), math.atan2(self.value.y, self.value.x))
+			local v = math.abs(self.value.x) + math.abs(self.value.y)
+			if(v > 1) then
+				v = 1
+			end
+			e:Apply_Velocity(e.Speed*v), math.atan2(self.value.y, self.value.x))
 		end
 	end
 end
 
 function love.touchpressed( id, x, y, dx, dy, pressure )
-	if self.activo then
+	if Joystick.activo then
 		if( x < 2*Joystick.dim.w/7  and  y > Joystick.dim.h/2 ) then
 			Joystick.touchJS = id
 			Joystick.posBolaScale = vect2.New(Joystick:toScale(x-(Joystick.wBola/2)*Joystick.scale), Joystick:toScale(y-(Joystick.wBola/2)*Joystick.scale))
@@ -51,7 +55,7 @@ function love.touchpressed( id, x, y, dx, dy, pressure )
 end
 
 function love.touchmoved( id, x, y, dx, dy, pressure )
-	if self.activo then
+	if Joystick.activo then
 		if( id == Joystick.touchJS ) then
 			Joystick.touchJS = id
 			Joystick.posBolaScale = vect2.New(Joystick:toScale(x-(Joystick.wBola/2)*Joystick.scale), Joystick:toScale(y-(Joystick.wBola/2)*Joystick.scale))
@@ -62,14 +66,14 @@ function love.touchmoved( id, x, y, dx, dy, pressure )
 			if(mod <= Joystick.wJS*Joystick.scale/2) then
 				Joystick.value = vect2.New((x - Joystick.origen.x) / (Joystick.wJS/2) / Joystick.scale, (y - Joystick.origen.y) / (Joystick.wJS/2) / Joystick.scale)
 			else
-				--Joystick.posBolaScale = 
+				Joystick.value = vect2.New((x - Joystick.origen.x) / (Joystick.wJS/2) / Joystick.scale, (y - Joystick.origen.y) / (Joystick.wJS/2) / Joystick.scale)				
 			end
 		end
 	end
 end
 
 function love.touchreleased( id, x, y, dx, dy, pressure )
-	if self.activo then
+	if Joystick.activo then
 		if( id == Joystick.touchJS ) then
 			Joystick.posBolaScale = Joystick.posBaseBolaScale
 			Joystick.value = vect2.New()

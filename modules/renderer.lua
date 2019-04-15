@@ -39,13 +39,15 @@ end
 
 function Renderer:RemoveRendererLayer(layer)
     for i = 1, #self.layers[layer] do
-        -- Si es la capa 4, mantiene el jugador activo
-        if layer == 4 then
-            if(self.layers[layer][i] ~= e) then
-                pop(self.layers[layer], i)
-            end
-        else
-            pop(self.layers[layer], i)
+        pop(self.layers[layer], i)
+    end
+end
+
+function Renderer:RemoveRendererLayer4()
+-- Si es la capa 4, mantiene el jugador activo
+    for i = 1, #self.layers[4] do
+        if(self.layers[4][i] ~= e) then
+            pop(self.layers[4], i)
         end
     end
 end

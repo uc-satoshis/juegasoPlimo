@@ -87,11 +87,11 @@ local Tile_Map = {
 
                                 if self.animatedTiles[id - 1] ~= nil then
                             
-                                local anim = self.animatedTiles[id - 1].animation
-                                local numFrames = #anim
-                                local index = self.frame % numFrames
+                                    local anim = self.animatedTiles[id - 1].animation
+                                    local numFrames = #anim
+                                    local index = self.frame % numFrames
 
-                                id = anim[index + 1].tileid + 1
+                                    id = anim[index + 1].tileid + 1
                                 end
 
 
@@ -110,6 +110,7 @@ local Tile_Map = {
         function map:Destroy()
             Game.GameLoop:RemoveLoop(map)
             Game.Renderer:RemoveRendererLayer(2)
+            love.graphics.draw(Game.Fondo, 0, 0)
             print("CAPA DE RENDER DE MAPAS DESTRUIDA!")
         end
 

@@ -15,7 +15,8 @@ function GSM:GotoScene(scene)
     end
 
     -- Destruye todas las entidades del gameloop y del renderer
-    Game.Renderer:RemoveRendererLayer(4)
+    Game.Renderer:RemoveRendererLayer4()
+
 
     -- Destruye la escena actual
     if #self.scenes > 0 then

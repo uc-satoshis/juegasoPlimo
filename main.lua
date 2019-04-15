@@ -81,6 +81,7 @@ function love.load()
                       }
     Game.OS         = love.system.getOS()
     Game.FPS = 30
+    Game.fondo = true
     Game.Fondo       = love.graphics.newImage("assets/fondos/black-background.jpg"),
 
     -- Inicializa los sistemas del juego
@@ -97,7 +98,6 @@ function love.load()
     -- Carga mapa
     Game.Assets:Add(love.graphics.newImage("assets/maps/tileset1.png"), "tileset1")
     Game.Assets:Generate_Quads(32, Game.Assets:Get("tileset1"), "tileset1_quads")
-    
 
       -- Entidad personaje
     e = Game.World:Create_Entity("player")
@@ -132,7 +132,9 @@ function love.draw()
 
     -- Dibuja en el Canvas
     love.graphics.setCanvas(Game.Canvas) -- set canvas
-    love.graphics.draw(Game.Fondo, 0, 0)
+    if Game.fondo == true then
+        love.graphics.draw(Game.Fondo, 0, 0)
+    end
     Game.Camera:Set() -- set camara
     Game.Renderer:Render()  -- renderiza en el canvas
     Game.Physics:Debug_Render()
