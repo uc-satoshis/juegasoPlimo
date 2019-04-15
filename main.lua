@@ -97,8 +97,6 @@ function love.load()
     -- Carga mapa
     Game.Assets:Add(love.graphics.newImage("assets/maps/tileset1.png"), "tileset1")
     Game.Assets:Generate_Quads(32, Game.Assets:Get("tileset1"), "tileset1_quads")
-    Game.Assets:Add(love.graphics.newImage("assets/maps/tileset2.png"), "tileset2")
-    Game.Assets:Generate_Quads(32, Game.Assets:Get("tileset2"), "tileset2_quads")
     
 
       -- Entidad personaje
@@ -106,7 +104,7 @@ function love.load()
 
     -- Componentes del personaje
     e:Add(require "components/c_sprite".New(), {type = "Player", velAnimacion = 0.3})
-    e:Add(require "components/c_body".New(), {x = Game.Dim.w/2-300, y = Game.Dim.h/2-100})
+    e:Add(require "components/c_body".New(), {x = Game.Dim.w/2-300, y = Game.Dim.h/2-200})
     e:Add(require "components/c_physics".New(), {friction = .83})
     --e:Add(require "components/c_player".New(), {})
     e:Add(require "components/c_controles".New(), {})
