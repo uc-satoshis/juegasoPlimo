@@ -7,16 +7,15 @@ New = function()
     function c_player.Load(e, args)
         e.Speed = 16
         Game.Joystick = require("controles/joystick")
+        Game.Joystick:Init()
     end
 
     function c_player.Tick(e, dt)
-        --print("Pers     "..e.Position.x, e.Position.y)
-        Game.Joystick:setPos()
+        Game.Joystick:Update(e)
     end
 
     function c_player.Render(e)
-        --print("JS        "..Game.Joystick.pos.x, Game.Joystick.pos.y)
-        love.graphics.draw(Game.Joystick.imgJS, Game.Joystick.pos.x, Game.Joystick.pos.y)
+        --Game.Joystick:Render()
     end
 
     return c_player

@@ -56,7 +56,7 @@
 
 
 _G.Game = {
-    love.window.setFullscreen(true),
+  --  love.window.setFullscreen(true),
     GameLoop    = require "modules/gameloop",
     Renderer    = require "modules/renderer",
     World       = require "modules/entity_world",
@@ -95,11 +95,10 @@ function love.load()
     Game.Canvas:setFilter("nearest","nearest")
 
     -- Carga mapa
-    Game.Assets:Add(love.graphics.newImage("assets/maps/sprites.png"), "sprites")
-    Game.Assets:Generate_Quads(32, Game.Assets:Get("sprites"), "sprites_quads")
-    Game.Assets:Add(love.graphics.newImage("assets/maps/sprites2.png"), "sprites2")
-    Game.Assets:Generate_Quads(32, Game.Assets:Get("sprites2"), "sprites2_quads")
-
+    Game.Assets:Add(love.graphics.newImage("assets/maps/tileset1.png"), "tileset1")
+    Game.Assets:Generate_Quads(32, Game.Assets:Get("tileset1"), "tileset1_quads")
+    Game.Assets:Add(love.graphics.newImage("assets/maps/tileset2.png"), "tileset2")
+    Game.Assets:Generate_Quads(32, Game.Assets:Get("tileset2"), "tileset2_quads")
     
 
       -- Entidad personaje
@@ -107,14 +106,14 @@ function love.load()
 
     -- Componentes del personaje
     e:Add(require "components/c_sprite".New(), {type = "Player", velAnimacion = 0.3})
-    e:Add(require "components/c_body".New(), {x = Game.Dim.w/2-50, y = Game.Dim.h/2-50})
+    e:Add(require "components/c_body".New(), {x = Game.Dim.w/2-300, y = Game.Dim.h/2-100})
     e:Add(require "components/c_physics".New(), {friction = .83})
-    e:Add(require "components/c_player".New(), {})
+    --e:Add(require "components/c_player".New(), {})
     e:Add(require "components/c_controles".New(), {})
     e:Add(require "components/c_camera_follow".New(), {})
 
     -- Carga lvl 0 (con mapa)
-    Game.GSM:GotoScene(require "scenes/level_0")
+    Game.GSM:GotoScene(require "scenes/level_0_1")
 
 end
 
@@ -139,6 +138,7 @@ function love.draw()
     Game.Renderer:Render()  -- renderiza en el canvas
     Game.Physics:Debug_Render()
     Game.Camera:Unset() -- unset camara
+    if Game.OS == "Android" and Game.Joystick.activo == true then Game.Joystick:Render() end -- dibuja el js
     love.graphics.setCanvas() -- unset canvas
 
     -- Dibuja el Canvas

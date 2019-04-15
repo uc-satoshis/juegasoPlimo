@@ -21,6 +21,10 @@ _G.math.vect2 = {
             self.y = self.y * v.y
         end
 
+        function vect2:Module(v)
+            return math.sqrt((self.x-v.x)^2 + (self.y-v.y)^2)
+        end
+
         return vect2
     end
 }

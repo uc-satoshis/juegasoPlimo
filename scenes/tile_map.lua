@@ -9,24 +9,32 @@ local Tile_Map = {
         for i, layer in ipairs(layers) do
             if (layer.type == "objectgroup") then
                 for j, object in ipairs(layer.objects) do
+
+
                     if (object.type == "") then
                         Game.Physics:Add_Static_Body({
                             position = {x=object.x, y=object.y},
                             size = {x=object.width, y=object.height}
                         })
                     end
+
                     if (object.type == "static") then
                         Game.Physics:Add_Static_Body({
                             position = {x=object.x, y=object.y},
                             size = {x=object.width, y=object.height}
                         })
                     end
+
                     if (object.type == "teleport") then
                         Game.Physics:Add_Map_Change({
                             position = {x=object.x, y=object.y},
-                            size = {x=object.width, y=object.height}
+                            size = {x=object.width, y=object.height},
+                            map= object.properties.map,
+                            spawnX= object.properties.spawnX,
+                            spawnY= object.properties.spawnY
                         })
                     end
+                    
                 end
             end
         end

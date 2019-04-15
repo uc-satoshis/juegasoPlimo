@@ -12,7 +12,7 @@ Robot       = require("characters/robot")
 -- Selecciona la animacion actual de la entidad en funcion de su velocidad
 function Animations:selectAnimation(e)
     local animActual
-    if(e.Velocity.x < 20 and e.Velocity.x > -20 and e.Velocity.y < 20 and e.Velocity.y > -20) then
+    if(e.Velocity.x < 0.5 and e.Velocity.x > -0.5 and e.Velocity.y < 0.5 and e.Velocity.y > -0.5) then
         e.parado = true
     elseif(abs(e.Velocity.x) > abs(e.Velocity.y) )then
         if(e.Velocity.x > 0) then

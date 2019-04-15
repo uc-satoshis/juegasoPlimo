@@ -7,7 +7,7 @@ New = function()
     function c_camera_follow.Load(e, args)
         assert(e.Position)
         e.camera_smoothing = args.camera_smoothing or 0.08
-        --Game.Camera:Zoom(Game.Dim.w/500)
+        Game.Camera:Zoom(Game.Dim.w/600)
     end
 
     function c_camera_follow.Tick(e, dt)
