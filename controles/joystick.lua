@@ -35,7 +35,7 @@ function Joystick:Update(e)
 			if(v > 1) then
 				v = 1
 			end
-			e:Apply_Velocity(e.Speed*v), math.atan2(self.value.y, self.value.x))
+			e:Apply_Velocity(e.Speed*v, math.atan2(self.value.y, self.value.x))
 		end
 	end
 end
