@@ -66,6 +66,7 @@ _G.Game = {
     Camera      = require "modules/camera",
     Animations  = require "modules/animations",
     Canvas      = love.graphics.newCanvas(w,h),
+    mapActual
 }
 
 --------------------------------------
@@ -73,6 +74,7 @@ _G.Game = {
 --------------------------------------
 function love.load()
 
+    --love.window.setFullscreen(true)
     Debug_Mode = true
 
     -- Inicializa las variables del juego
@@ -82,7 +84,7 @@ function love.load()
     Game.OS         = love.system.getOS()
     Game.FPS = 30
     Game.fondo = true
-    Game.Fondo       = love.graphics.newImage("assets/fondos/black-background.jpg"),
+    Game.Fondo       = love.graphics.newImage("assets/fondos/black-background.jpg")
 
     -- Inicializa los sistemas del juego
     Game.GameLoop:Init()
@@ -104,7 +106,7 @@ function love.load()
 
     -- Componentes del personaje
     e:Add(require "components/c_sprite".New(), {type = "Player", velAnimacion = 0.3})
-    e:Add(require "components/c_body".New(), {x = Game.Dim.w/2-300, y = Game.Dim.h/2-200})
+    e:Add(require "components/c_body".New(), {x = 270, y = 200})
     e:Add(require "components/c_physics".New(), {friction = .83})
     --e:Add(require "components/c_player".New(), {})
     e:Add(require "components/c_controles".New(), {})

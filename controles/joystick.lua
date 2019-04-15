@@ -32,7 +32,7 @@ function Joystick:Update(e)
 	if self.activo then
 		if(math.abs(self.value.x) > 0.01 and math.abs(self.value.y) > 0.01) then
 			local v = math.abs(self.value.x) + math.abs(self.value.y)
-			if(v > 1) then
+			if v > 1 then
 				v = 1
 			end
 			e:Apply_Velocity(e.Speed*v, math.atan2(self.value.y, self.value.x))
@@ -59,15 +59,7 @@ function love.touchmoved( id, x, y, dx, dy, pressure )
 		if( id == Joystick.touchJS ) then
 			Joystick.touchJS = id
 			Joystick.posBolaScale = vect2.New(Joystick:toScale(x-(Joystick.wBola/2)*Joystick.scale), Joystick:toScale(y-(Joystick.wBola/2)*Joystick.scale))
-			
-			-- calcula value del js si esta en el circulo
-			local t = vect2.New(x,y)
-			local mod = t:Module(Joystick.origen)
-			if(mod <= Joystick.wJS*Joystick.scale/2) then
-				Joystick.value = vect2.New((x - Joystick.origen.x) / (Joystick.wJS/2) / Joystick.scale, (y - Joystick.origen.y) / (Joystick.wJS/2) / Joystick.scale)
-			else
-				Joystick.value = vect2.New((x - Joystick.origen.x) / (Joystick.wJS/2) / Joystick.scale, (y - Joystick.origen.y) / (Joystick.wJS/2) / Joystick.scale)				
-			end
+			Joystick.value = vect2.New((x - Joystick.origen.x) / (Joystick.wJS/2) / Joystick.scale, (y - Joystick.origen.y) / (Joystick.wJS/2) / Joystick.scale)
 		end
 	end
 end
@@ -90,18 +82,6 @@ function Joystick:Render()
 		love.graphics.draw(self.imgBola, self.posBolaScale.x, self.posBolaScale.y)
 		love.graphics.pop() -- so the scale doesn't affect anything else
 	end
---[[
-	love.graphics.print(self.origen.x, 10, 40)
-	love.graphics.print(self.origen.y, 10, 50)
-
-	love.graphics.print(self.value.x, 10, 70)
-	love.graphics.print(self.value.y, 10, 80)
-
-	love.graphics.setColor(0, 0, 0)
-	love.graphics.circle("fill", self.origen.x, self.origen.y, 10)
-	love.graphics.setColor(255, 255, 255)
-]]
-
 end
 
 function Joystick:toScale(x)
@@ -112,10 +92,6 @@ end
 function Joystick:toCoords(x)
 	local x2 = x*self.scale
 	return x2
-end
-
-function Joystick:calculaPos(x,y)
-	
 end
 
 return Joystick

@@ -1,9 +1,7 @@
 local Tile_Map = {
 
     New = function(path)
-        if(mapActual~=nil) then
-            mapActual:Destroy()
-        end
+    
         local map = require(path)
 
 
@@ -20,9 +18,7 @@ local Tile_Map = {
         map.frame = 0
         map.timer = 0.0
         map.maxTimer = 0.1
-
-        Game.GameLoop:RemoveLoop(map)
-        Game.GameLoop:AddLoop(map)
+        
 
 
         for i, layer in ipairs(layers) do
@@ -64,12 +60,12 @@ local Tile_Map = {
                 self.frame = self.frame + 1
                 self.timer = 0
             end
-            print('stik')
             self.timer = self.timer + dt
             
         end
 
         function map:Render()
+            --print(map)
             local image = Game.Assets:Get(map.tilesets[1].name)
             assert(image)
 
@@ -78,7 +74,7 @@ local Tile_Map = {
 
 
 
-                        for i, layer in ipairs(self.layers) do
+            for i, layer in ipairs(self.layers) do
                 if (layer.type == "tilelayer") then
                     for y = 0, layer.height - 1 do
                         for x = 0, layer.width - 1 do
@@ -110,10 +106,10 @@ local Tile_Map = {
         function map:Destroy()
             Game.GameLoop:RemoveLoop(map)
             Game.Renderer:RemoveRendererLayer(2)
-            love.graphics.draw(Game.Fondo, 0, 0)
             print("CAPA DE RENDER DE MAPAS DESTRUIDA!")
         end
 
+        Game.GameLoop:AddLoop(map)
         Game.Renderer:AddRenderer(map, 2)
         print("MAPA ANADIDO!")
         return map

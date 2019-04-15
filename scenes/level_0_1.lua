@@ -12,12 +12,12 @@ function level_0_1:OvInit()
     
 
     e2 = Game.World:Create_Entity("npc")
-    e2:Add(require "components/c_body".New(), {x = 400, y = 180, width = 64, height = 64})
     e2:Add(require "components/c_sprite".New(), {type = "Skeleton", velAnimacion = 0.3})
+    e2:Add(require "components/c_body".New(), {x = 500, y = 180})
     e2:Add(require "components/c_physics_npc".New(), {friction = .85})
 
     -- Mapa
-    mapActual = require("scenes/tile_map").New("assets/maps/mapa_0_1")
+    Game.mapActual = require("scenes/tile_map").New("assets/maps/mapa_0_1")
 
 end
 

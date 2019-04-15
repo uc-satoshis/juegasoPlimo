@@ -147,6 +147,7 @@ end
 
 function Physics_Engine:Tick(dt)
 
+    --print("..PHYSICS ENGINE.. B: "..#self.bodies.."  BNPC: "..#self.bodies_npc.."  S: "..#self.statics.."  TP: "..#self.map_change)
 
     -- player body colisions and movement
     for i, body in ipairs(self.bodies) do

@@ -28,7 +28,7 @@ New = function(id)
         Game.GameLoop:RemoveLoop(self)
         Game.Renderer:RemoveRenderer(self)
         self:OvDestroy()
-        --print("ESCENA ELIMINADA!")
+        print("ESCENA "..self.id.." ELIMINADA!")
     end
 
     return scene
