@@ -104,12 +104,12 @@ local Tile_Map = {
 
 
         function map:Destroy()
-            Game.GameLoop:RemoveLoop(map)
+            Game.GameLoop:RemoveLoop(self)
             Game.Renderer:RemoveRendererLayer(2)
             print("CAPA DE RENDER DE MAPAS DESTRUIDA!")
         end
 
-        Game.GameLoop:AddLoop(map)
+        Game.GameLoop:AddLoop(self)
         Game.Renderer:AddRenderer(map, 2)
         print("MAPA ANADIDO!")
         return map

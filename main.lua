@@ -74,13 +74,13 @@ _G.Game = {
 --------------------------------------
 function love.load()
 
-    --love.window.setFullscreen(true)
-    Debug_Mode = true
+    Debug_Mode = false
 
     -- Inicializa las variables del juego
     Game.Dim        = { w = love.graphics.getWidth(),
                         h = love.graphics.getHeight()
                       }
+    Game.Scale      = Game.Dim.w/600
     Game.OS         = love.system.getOS()
     Game.FPS = 30
     Game.fondo = true
@@ -103,7 +103,6 @@ function love.load()
 
       -- Entidad personaje
     e = Game.World:Create_Entity("player")
-
     -- Componentes del personaje
     e:Add(require "components/c_sprite".New(), {type = "Player", velAnimacion = 0.3})
     e:Add(require "components/c_body".New(), {x = 270, y = 200})
@@ -114,7 +113,6 @@ function love.load()
 
     -- Carga lvl 0 (con mapa)
     Game.GSM:GotoScene(require "scenes/level_0_1")
-
 end
 
 ---------------------------------------
@@ -146,4 +144,25 @@ function love.draw()
 
     -- Dibuja el Canvas
     love.graphics.draw(Game.Canvas, 0, 0)
+end
+
+
+
+
+
+
+
+
+
+---------------------------------------
+--- Funciones Aux ---------------------
+---------------------------------------
+function toScale(x)
+    local x2 = x/Game.Scale
+    return x2
+end
+
+function toCoords(x)
+    local x2 = x*Game.Scale
+    return x2
 end
