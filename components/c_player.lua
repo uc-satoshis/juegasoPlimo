@@ -5,7 +5,7 @@ New = function()
     local c_player = component.New "player"
 
     function c_player.Load(e, args)
-        e.Speed = 16
+        e.Speed = 70--16
         Game.Joystick = require("controles/joystick")
         Game.Joystick:Init()
     end

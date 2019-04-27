@@ -56,16 +56,15 @@ local Tile_Map = {
         end
 
         function map:Tick(dt)
+            --print(map)
             if self.timer > self.maxTimer then 
                 self.frame = self.frame + 1
                 self.timer = 0
             end
             self.timer = self.timer + dt
-            
         end
 
         function map:Render()
-            --print(map)
             local image = Game.Assets:Get(map.tilesets[1].name)
             assert(image)
 
@@ -104,15 +103,16 @@ local Tile_Map = {
 
 
         function map:Destroy()
+            --print(tostring(self).." Destruido")
             Game.GameLoop:RemoveLoop(self)
             Game.Renderer:RemoveRendererLayer(2)
-            print("CAPA DE RENDER DE MAPAS DESTRUIDA!")
+            --print("LOOP Y CAPA DE RENDER DE MAPAS DESTRUIDAS!")
         end
 
-        Game.GameLoop:AddLoop(self)
+        Game.GameLoop:AddLoop(map)
         Game.Renderer:AddRenderer(map, 2)
-        print("MAPA ANADIDO!")
+        --print(tostring(map).." MAPA ANADIDO!")
         return map
-    end
+    end,
 }
 return Tile_Map

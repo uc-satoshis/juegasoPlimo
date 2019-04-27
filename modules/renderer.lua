@@ -61,7 +61,7 @@ function Renderer:Render()
         end
     end
 
-    if Debug_Mode == true then
+    if Debug_Mode then
         print("GameLoop : "..#Game.GameLoop.tickers, "Renderer : "..#self.layers[1],#self.layers[2],#self.layers[3],#self.layers[4])
     end
 

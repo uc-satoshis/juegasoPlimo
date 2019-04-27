@@ -74,7 +74,7 @@ _G.Game = {
 --------------------------------------
 function love.load()
 
-    Debug_Mode = false
+    Debug_Mode = true
 
     -- Inicializa las variables del juego
     Game.Dim        = { w = love.graphics.getWidth(),

@@ -15,7 +15,7 @@ function level_0_2:OvInit()
 
     -- Mapa
 
-    mapActual = require("scenes/tile_map").New("assets/maps/mapa_0_2")
+    Game.mapActual = require("scenes/tile_map").New("assets/maps/mapa_0_2")
 end
 
 function level_0_2:OvRender()

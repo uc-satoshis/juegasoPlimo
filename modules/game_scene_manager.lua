@@ -20,7 +20,7 @@ function GSM:GotoScene(scene)
     --Destruye del renderer la capa del mapa
     Game.Renderer:RemoveRendererLayer(2)
 
-
+    
     if(Game.mapActual~=nil) then
         Game.mapActual:Destroy()
     end

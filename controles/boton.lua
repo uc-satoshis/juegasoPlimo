@@ -26,8 +26,6 @@ New = function(sprite, x, y, id)
 					Debug_Mode = true
 				end
 			end
-
-
 		end
 	end
 
